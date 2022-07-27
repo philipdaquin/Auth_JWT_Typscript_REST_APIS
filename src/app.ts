@@ -6,6 +6,8 @@ import app_route from './routes'
 
 const app = express()
 
+app.use(express.json())
+
 let [port, mongo_db] = [config.get<string>('port'), config.get('mongoDb')]
 
 app.listen(port, async () => { 

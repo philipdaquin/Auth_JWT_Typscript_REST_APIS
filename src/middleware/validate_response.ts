@@ -11,7 +11,8 @@ const validate_response = (schema: AnyZodObject) => (
                 body: request.body, 
                 query: request.query,
                 params: request.params
-            })
+            });
+            next();
         } catch (error) { 
             return response
                 .status(400)
