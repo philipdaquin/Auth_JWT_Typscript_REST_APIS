@@ -2,7 +2,7 @@ import {Request, Response} from 'express'
 import { omit } from 'lodash';
 import { signing_jwt } from '../jwt';
 import UserType from '../models/user_model'
-import { create_user_session, get_user_session } from '../service/session_service';
+import { create_user_session, get_user_session, update_session } from '../service/session_service';
 import config from 'config'
 
 
@@ -39,7 +39,7 @@ export async function create_user_session_handler(request: Request, response: Re
 
 export async function get_session_handler(request: Request, response: Response) { 
     const user_id = response.locals.user._id;
-    const session = await get_user_session({user: user_id, valid: false});
+    const session = await get_user_session({user: user_id, valid: true});
 
     //  Return session
     return response.send(session)
@@ -55,4 +55,17 @@ export async function validate_password({email , password}: {email: string, pass
      
     if (!is_valid) return false
     return omit(user.toJSON(), "password")
+}
+
+
+export async function delete_session(request: Request, response: Response) { 
+    let session_id = response.locals.user.session;
+    
+    await update_session({_id: session_id}, {valid: false});
+    
+    return response.send({
+        access_token: null,
+        refresh_token: null 
+    })
+
 }
