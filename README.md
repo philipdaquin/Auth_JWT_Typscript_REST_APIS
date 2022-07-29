@@ -1,1 +1,8 @@
-# MVC with NodeJs, Express, MongoDb in Typescript
+# Authentication / Authorisation with Typescript
+
+### Technology Stack:
+- Typescript 
+- Node JS
+- Express
+- Mongo DB
+- Zod 
