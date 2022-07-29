@@ -31,3 +31,4 @@
 
 ## Sample Endpoints using PostMan:
 ![POstman](https://user-images.githubusercontent.com/85416532/181674662-b26f41c3-f994-4c56-9af4-21a8b3bb7248.png)
+![1123](https://user-images.githubusercontent.com/85416532/181674970-7d81c086-0404-4e22-b1c1-5ba259337478.png)
