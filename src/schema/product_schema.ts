@@ -4,7 +4,7 @@ import {object, number, string, TypeOf} from 'zod'
 
 const payload =  { 
     body: object({
-        title: string({required_error: 'Needs a Title'}),
+        name: string({required_error: 'Needs a Title'}),
         description: string({required_error: 'Needs a description'})
             .min(300, "Min length is 300 chars"), 
         price: number({required_error: 'Needs a Price'}), 

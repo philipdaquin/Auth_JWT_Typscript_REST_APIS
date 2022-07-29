@@ -7,6 +7,8 @@ import { create_user_session, get_user_session } from "./service/session_service
 import { createSessionSchema } from './schema/session_schema'
 import {deserialize_user} from "./middleware/user_validation"
 import { require_user } from "./middleware/user_requirement";
+import { createProductSchema, deleteProductSchema, getProductSchema, updateProductSchema } from "./schema/product_schema";
+import { create_product_handler, delete_product_handler, get_product_handler, update_product_handler } from "./controller/product_controller";
 
 export default function app_route(app: Express) {
     
@@ -22,4 +24,10 @@ export default function app_route(app: Express) {
     app.post('/api/create_session', validate_response(createSessionSchema), create_user_session_handler)
     app.get('/api/session', require_user, get_session_handler)
     app.delete('/api/delete', require_user, delete_session)
+    // Route API for products 
+    app.post('/api/products', [require_user, validate_response(createProductSchema)], create_product_handler)
+    app.post('/api/products', [require_user, validate_response(deleteProductSchema)], delete_product_handler)
+    app.post('/api/products', [require_user, validate_response(getProductSchema)], get_product_handler)
+    app.post('/api/products', [require_user, validate_response(updateProductSchema)], update_product_handler)
+
 }
