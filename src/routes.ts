@@ -26,8 +26,8 @@ export default function app_route(app: Express) {
     app.delete('/api/delete', require_user, delete_session)
     // Route API for products 
     app.post('/api/products', [require_user, validate_response(createProductSchema)], create_product_handler)
-    app.post('/api/products', [require_user, validate_response(deleteProductSchema)], delete_product_handler)
-    app.post('/api/products', [require_user, validate_response(getProductSchema)], get_product_handler)
-    app.post('/api/products', [require_user, validate_response(updateProductSchema)], update_product_handler)
+    app.delete('/api/products', [require_user, validate_response(deleteProductSchema)], delete_product_handler)
+    app.get('/api/products', [require_user, validate_response(getProductSchema)], get_product_handler)
+    app.put('/api/products', [require_user, validate_response(updateProductSchema)], update_product_handler)
 
 }
