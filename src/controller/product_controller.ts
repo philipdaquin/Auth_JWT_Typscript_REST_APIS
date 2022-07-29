@@ -45,9 +45,10 @@ export async function get_product_handler(
     let product = await get_product({product_id});
     
     if (!product) return response
-        .sendStatus(404)
-        .send("Unable to get the product")
-
+    .sendStatus(404)
+    .send("Unable to get the product")
+    
+    if (String(product.user_id) !== user_id) return response.sendStatus(403)
     return response.send(product)
 
 }
@@ -63,7 +64,7 @@ export async function delete_product_handler(
     if (!product) return response
         .sendStatus(404)
         .send("Unable to get the product")
-    if (product.user_id !== user_id) return response.sendStatus(403)
+    if (String(product.user_id) !== user_id) return response.sendStatus(403)
 
     let update_product_item = await delete_product({product_id})
 
