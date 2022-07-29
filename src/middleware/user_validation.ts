@@ -19,9 +19,11 @@ export  const deserialize_user = async (request: Request, response: Response, ne
 
     if (expired && refresh_token) { 
         const new_access_token = await re_issue_access_token({refresh_token});
+        // Re issue New Access Token, Set the user header 
         if (new_access_token) return response.setHeader('x-access-token', new_access_token)
+        // Decode access token
         const result = verify_jwt(new_access_token as string)
-
+        
         response.locals.user = result.decoded
 
         return next()

@@ -28,9 +28,9 @@ export async function update_session(query: FilterQuery<SessionDocument>, update
 export async function re_issue_access_token({refresh_token}: {refresh_token: string} ) {
     const { decoded } = verify_jwt(refresh_token);
 
-    if (!decoded || !get(decoded, '_id' )) return false
+    if (!decoded || !get(decoded, 'session' )) return false
     
-    const session = await Session.findById(get(decoded, "_id"))
+    const session = await Session.findById(get(decoded, "session"))
 
     //  If the session is already valid
     if (!session || !session.valid) return false;
@@ -41,7 +41,7 @@ export async function re_issue_access_token({refresh_token}: {refresh_token: str
     // User Not found, return false
     if (!user) return false 
 
-    // Create an access token 
+    // Else, Create an access token 
     const access_token = signing_jwt(
         {...user, session: session.user_id },
         {
