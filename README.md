@@ -11,6 +11,7 @@
 - Express
 - Mongo DB
 - Zod 
+- Docker
 - Postman (testing)
 
 
@@ -26,3 +27,7 @@
 - `/api/product/:product_id` : Delete a Product 
 - `/api/product/:product_id` : Query a Product 
 - `/api/product` : Update a Product
+
+
+## Sample Endpoints using PostMan:
+![POstman](https://user-images.githubusercontent.com/85416532/181674662-b26f41c3-f994-4c56-9af4-21a8b3bb7248.png)
